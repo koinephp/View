@@ -1,6 +1,24 @@
 {
+    "name": "koine/view",
+    "description": "Simple View renderer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo Jacobus",
+            "email": "marcelo.jacobus@gmail.com"
+        },
+        {
+            "name": "Elisandro Nabinger",
+            "email": "elisandro.nabinger@gmail.com"
+        },
+        {
+            "name": "Daniel Caña",
+            "email": "dbcana.unique@gmail.com"
+        }
+    ],
     "require-dev" : {
-        "phpunit/phpunit" : "*"
+        "phpunit/PHPUnit": "*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload" : {
         "psr-0" : {
