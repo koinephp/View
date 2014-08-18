@@ -6,7 +6,7 @@ Simple view renderer for phtml files
 Code information:
 
 [![Build Status](https://travis-ci.org/koinephp/View.png?branch=master)](https://travis-ci.org/koinephp/View)
-[![Coverage Status](https://coveralls.io/repos/koinephp/View/badge.png)](https://coveralls.io/r/koinephp/View)
+[![Coverage Status](https://coveralls.io/repos/koinephp/View/badge.png?branch=master)](https://coveralls.io/r/koinephp/View?branch=master)
 [![Code Climate](https://codeclimate.com/github/koinephp/View.png)](https://codeclimate.com/github/koinephp/View)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/View/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/koinephp/View/?branch=master)
 
