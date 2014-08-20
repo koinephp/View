@@ -1,0 +1,9 @@
+<sidebar class="related">
+    <h2>Related Posts</h2>
+    <?php foreach ($posts as $post) : ?>
+        <?= $this->partial('related_post.phtml', array(
+            'title' => $post['title'],
+            'url'   => $post['url'],
+        )) ?>
+    <?php endforeach ?>
+</sidebar>
