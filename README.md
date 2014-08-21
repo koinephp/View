@@ -22,9 +22,9 @@ Package information:
 ```php
 $config  = new Koine\View\Config;
 
-$config->addViewPath('/path1')
-    ->addViewPath('/path2')
-    ->addViewPaths(array(
+$config->addPath('/path1')
+    ->addPath('/path2')
+    ->addPaths(array(
         'path3',
         'path4',
     ));
@@ -46,12 +46,12 @@ echo $viewRenderer->render('post_template.phtml', array(
 The templates:
 
 ```phtml
-<!-- _post_template.phtml -->
+<!-- post_template.phtml -->
 <article>
     <h1><?= $this->escape($title) ?></h1>
     <div class="body"><?= $this->escape($body) ?></div>
 
-    <?= $this->partial('related_posts', array(
+    <?= $this->partial('related_posts.phtml', array(
             'posts' => $relatedPosts
         ));
     ?>
@@ -61,7 +61,7 @@ The templates:
 <sidebar class="related">
     <h2>Related Posts</h2>
     <?php foreach ($posts as $post) : ?>
-        <?= $this->partial('related_post', array(
+        <?= $this->partial('related_post.phtml', array(
             'title' => $post['title'],
             'url'   => $post['url'],
         )) ?>
