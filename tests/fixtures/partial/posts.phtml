@@ -1,0 +1,6 @@
+<article>
+    <h1><?= $title ?></h1>
+    <div class="body"><?= $body ?></div>
+
+<?= $this->partial('related_posts.phtml', array('posts' => $relatedPosts)); ?>
+</article>
