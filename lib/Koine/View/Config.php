@@ -13,13 +13,13 @@ class Config
     protected $paths = array();
 
     /**
-     * @var Hash
+     * @var Helpers
      */
     protected $helpers;
 
     public function __construct()
     {
-        $this->helpers = new Hash();
+        $this->helpers = new Helpers();
     }
 
     /**
@@ -100,14 +100,12 @@ class Config
      */
     public function getHelper($name)
     {
-        return $this->helpers->fetch($name, function ($name) {
-            throw new InvalidArgumentException("Helper '$name' was not set");
-        });
+        return $this->helpers->fetch($name);
     }
 
     /**
      * Get the collection of helpers
-     * @return Hash
+     * @return Helpers
      */
     public function getHelpers()
     {

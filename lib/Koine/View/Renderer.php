@@ -3,8 +3,6 @@
 namespace Koine\View;
 
 use Koine\Object;
-use ReflectionClass;
-use ReflectionException;
 
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
@@ -117,14 +115,8 @@ class Renderer extends Object
         $method    = array_shift($arguments);
         $args      = array_shift($arguments);
 
-        foreach ($this->getConfig()->getHelpers() as $helper) {
-            $class = new ReflectionClass($helper);
+        $helpers = $this->getConfig()->getHelpers();
 
-            if ($class->hasMethod($method)) {
-                return $class->getMethod($method)->invokeArgs($helper, $args);
-            }
-        }
-
-        return parent::send($method);
+        return call_user_func_array(array($helpers, $method), $args);
     }
 }
