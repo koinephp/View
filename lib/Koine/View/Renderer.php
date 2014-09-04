@@ -2,10 +2,14 @@
 
 namespace Koine\View;
 
+use Koine\Object;
+use ReflectionClass;
+use ReflectionException;
+
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
  */
-class Renderer
+class Renderer extends Object
 {
     /**
      * @var Config
@@ -91,5 +95,36 @@ class Renderer
         throw new Exceptions\FileNotFound(
             'File \'' . $filename . '\' was not found.'
         );
+    }
+
+    /**
+     * Get the view config
+     * @return Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     * Delegates missing method to the helpers
+     *
+     * {@inheritdocs}
+     */
+    public function send()
+    {
+        $arguments = func_get_args();
+        $method    = array_shift($arguments);
+        $args      = array_shift($arguments);
+
+        foreach ($this->getConfig()->getHelpers() as $helper) {
+            $class = new ReflectionClass($helper);
+
+            if ($class->hasMethod($method)) {
+                return $class->getMethod($method)->invokeArgs($helper, $args);
+            }
+        }
+
+        return parent::send($method);
     }
 }

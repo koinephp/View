@@ -16,13 +16,16 @@
             "email": "dbcana.unique@gmail.com"
         }
     ],
-    "require-dev" : {
+    "require-dev": {
         "phpunit/PHPUnit": "*",
         "satooshi/php-coveralls": "dev-master"
     },
-    "autoload" : {
-        "psr-0" : {
-            "Koine" : "lib"
+    "autoload": {
+        "psr-0": {
+            "Koine": "lib"
         }
+    },
+    "require": {
+        "koine/core": "0.9.*"
     }
 }

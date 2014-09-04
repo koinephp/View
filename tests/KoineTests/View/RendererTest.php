@@ -6,6 +6,19 @@ use Koine\View\Config;
 use Koine\View\Renderer;
 use PHPUnit_Framework_TestCase;
 
+class Helper
+{
+    public function sayHello($name, $lastName)
+    {
+        return "Hello $name $lastName.";
+    }
+
+    public function sayHelloAgain()
+    {
+        return 'Hello again!';
+    }
+}
+
 class RendererTest extends PHPUnit_Framework_TestCase
 {
     protected $object;
@@ -86,5 +99,32 @@ class RendererTest extends PHPUnit_Framework_TestCase
         $actual   = preg_replace('/\s+/', '', $actual);
 
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function executesHelperMethodWhenInexistingMethodIsCalled()
+    {
+        $helper = new Helper();
+
+        $this->object->getConfig()->setHelper('hello', $helper);
+
+        $message = $this->object->sayHello('Jon', 'Doe');
+
+        $this->assertEquals('Hello Jon Doe.', $message);
+
+        $message = $this->object->sayHelloAgain();
+
+        $this->assertEquals('Hello again!', $message);
+    }
+
+    /**
+     * @test
+     * @expectedException Koine\NoMethodException
+     */
+    public function throwsExceptionWhenUndefinedMethodIsCalled()
+    {
+        $this->object->undefinedMethod();
     }
 }

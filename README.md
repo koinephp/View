@@ -29,10 +29,7 @@ $config->addPath('/path1')
         'path4',
     ));
 
-$config->registerHelper(
-    // will provide the "escape" method for the views
-    new MyEscaper()
-);
+$config->setHelper('escaper', new MyEscaper());
 
 $viewRenderer = $config->getViewRenderer();
 
@@ -48,8 +45,9 @@ The templates:
 ```phtml
 <!-- post_template.phtml -->
 <article>
+    <!-- either $this->escape() or $this->getHelper('escaper')->escape() will work -->
     <h1><?= $this->escape($title) ?></h1>
-    <div class="body"><?= $this->escape($body) ?></div>
+    <div class="body"><?= $this->getHelper('escaper')->escape($body) ?></div>
 
     <?= $this->partial('related_posts.phtml', array(
             'posts' => $relatedPosts
@@ -69,7 +67,7 @@ The templates:
 </sidebar>
 
 <!-- _related_post.phtml -->
-<a href="<?= $this->escape($url) ?>"><?= $this->escape($title) ?></a>
+<a href="<?= $this->getHelper('escaper')->escape($url) ?>"><?= $this->getHelper('escaper')->escape($title) ?></a>
 ```
 
 

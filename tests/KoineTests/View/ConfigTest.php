@@ -70,6 +70,41 @@ class ConfigTest extends PHPUnit_Framework_TestCase
             '/path',
             (object) array()
         ));
+    }
 
+    /**
+     * @test
+     */
+    public function canRegisterHelpers()
+    {
+        $expected = new \StdClass();
+
+        $helper = $this->object->setHelper('myHelper', $expected)
+            ->getHelper('myHelper');
+
+        $this->assertSame($expected, $helper);
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Helper 'none' was not set
+     */
+    public function throwsExceptionWhenHelperIsNotFound()
+    {
+        $this->object->getHelper('none');
+    }
+
+    /**
+     * @test
+     */
+    public function canGetHelpers()
+    {
+        $expected = new \StdClass();
+
+        $helpers = $this->object->setHelper('myHelper', $expected)
+            ->getHelpers()->toArray();
+
+        $this->assertEquals(array('myHelper' => $expected), $helpers);
     }
 }
