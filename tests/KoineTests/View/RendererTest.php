@@ -104,6 +104,19 @@ class RendererTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function renderPartialsInsideFolders()
+    {
+        $expected = file_get_contents(FIXTURES_PATH . '/partial/partial_test.phtml');
+
+        $this->object->partial('partial/post.phtml', array(
+            'title' => 'Partial Test',
+            'url'  => 'Url',
+        ));
+    }
+
+    /**
+     * @test
+     */
     public function executesHelperMethodWhenInexistingMethodIsCalled()
     {
         $helper = new Helper();

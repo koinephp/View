@@ -52,7 +52,12 @@ class Renderer extends Object
      */
     public function partial($name, array $localVariables = array())
     {
-        return $this->render("_$name", $localVariables);
+        $parts   = explode('/', $name);
+        $name    = array_pop($parts);
+        $parts[] = "_$name";
+        $partial = implode('/', $parts);
+
+        return $this->render($partial, $localVariables);
     }
 
     protected function includeWithLocalVariables($file, array $locals = array())
