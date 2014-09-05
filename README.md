@@ -20,7 +20,7 @@ Package information:
 ### Usage
 
 ```php
-$config  = new Koine\View\Config;
+$config  = new \Koine\View\Config;
 
 $config->addPath('/path1')
     ->addPath('/path2')
@@ -29,9 +29,9 @@ $config->addPath('/path1')
         'path4',
     ));
 
-$config->setHelper('escaper', new MyEscaper());
+$config->setHelper('escaper', new \MyEscaper());
 
-$viewRenderer = $config->getViewRenderer();
+$viewRenderer = new \Koine\View\Renderer($config);
 
 echo $viewRenderer->render('post_template.phtml', array(
     'title'        => 'Some Title',
