@@ -2,12 +2,10 @@
 
 namespace Koine\View\Exceptions;
 
-use Exception as PHPException;
-
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
  */
-class Exception extends PHPException
+class Exception extends \Exception
 {
     /**
      * Constructor.
