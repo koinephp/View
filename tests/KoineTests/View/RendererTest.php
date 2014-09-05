@@ -220,7 +220,7 @@ class RendererTest extends PHPUnit_Framework_TestCase
         $file = FIXTURES_PATH . '/undefined_variable.phtml';
 
         $this->setExpectedException(
-            'Koine\View\Exceptions\UndefinedLocalVariableException',
+            'Koine\View\Exceptions\Exception',
             "Undefined variable: bar in file $file:2"
         );
 

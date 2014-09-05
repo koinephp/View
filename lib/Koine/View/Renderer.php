@@ -51,10 +51,11 @@ class Renderer extends Object
      * Render a partial. A partial is a file prefixed with the "_" (underscore)
      * prefix
      *
-     * @param  string                 $filename       if no extension is given
-     *                                                default to phtml
-     * @param  array                  $localVariables
-     * @throws Exception\FileNotFound when file does not exist in the view paths
+     * @param  string                  $filename       if no extension is given
+     *                                                 default to phtml
+     * @param  array                   $localVariables
+     * @throws Exceptions\FileNotFound when file does not exist in the view paths
+     * @throws Exceptions\Exception    when errors are issued
      * @return string
      */
     public function partial($name, array $localVariables = array())
@@ -67,12 +68,17 @@ class Renderer extends Object
         return $this->render($partial, $localVariables);
     }
 
+    /**
+     * @param  string               $file
+     * @params array $localVariables
+     * @throws Exceptions\Exception when errors are issued
+     */
     protected function includeWithLocalVariables($file, array $locals = array())
     {
         ob_start();
 
         set_error_handler(array(
-            'Koine\View\Exceptions\UndefinedLocalVariableException',
+            'Koine\View\Exceptions\Exception',
             'handleError'
         ));
 

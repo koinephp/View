@@ -2,12 +2,12 @@
 
 namespace Koine\View\Exceptions;
 
-use Exception;
+use Exception as PHPException;
 
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
  */
-class UndefinedLocalVariableException extends Exception
+class Exception extends PHPException
 {
     /**
      * Constructor.
