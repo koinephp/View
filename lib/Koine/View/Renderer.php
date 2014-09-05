@@ -3,6 +3,7 @@
 namespace Koine\View;
 
 use Koine\Object;
+use Koine\Hash;
 
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
@@ -15,6 +16,11 @@ class Renderer extends Object
     protected $config;
 
     /**
+     * @var hash
+     */
+    protected $data;
+
+    /**
      * The view configuration
      *
      * @param Config $config
@@ -22,6 +28,7 @@ class Renderer extends Object
     public function __construct(Config $config)
     {
         $this->config = $config;
+        $this->data = new Hash();
     }
 
     /**
@@ -123,5 +130,81 @@ class Renderer extends Object
         $helpers = $this->getConfig()->getHelpers();
 
         return call_user_func_array(array($helpers, $method), $args);
+    }
+
+    /**
+     * Sets the renderer data
+     * @param  array $data
+     * @return self
+     */
+    public function setData(array $data)
+    {
+        foreach ($this->getData()->toArray() as $key => $value) {
+            $this->getData()->offsetUnset($key);
+        }
+
+        $this->addData($data);
+
+        return $this;
+    }
+
+    /**
+     * Adds data to the renderer
+     * @param  array $data
+     * @return self
+     */
+    public function addData(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $this->data[$key] = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the collection of data
+     * @return Hash
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Get data
+     *
+     * @param  string $dataKey
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function get($dataKey, $default = null)
+    {
+        return $this->fetch($dataKey, function ($key) use ($default) {
+            return $default;
+        });
+    }
+
+    /**
+     * Get data
+     *
+     * @param  string                    $dataKey
+     * @param  mixed                     $default
+     * @return mixed
+     * @throws \InvalidArgumentException when data is not set
+     */
+    public function fetch($dataKey, $default = null)
+    {
+        return $this->getData()->fetch($dataKey, $default);
+    }
+
+    /**
+     * Get data by name
+     * @param  string $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->fetch($name);
     }
 }

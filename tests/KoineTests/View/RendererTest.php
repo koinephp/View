@@ -140,4 +140,75 @@ class RendererTest extends PHPUnit_Framework_TestCase
     {
         $this->object->undefinedMethod();
     }
+
+    /**
+     * @test
+     */
+    public function canSetAndGetData()
+    {
+        $object = new \StdClass();
+        $object->message = 'Foo Message';
+
+        $foo = new \StdClass();
+
+        $expectedData = array(
+            'messenger' => $object,
+            'foo'       => $foo
+        );
+
+        $data = $this->object
+            ->addData(array('messenger' => $object))
+            ->addData(array('foo' => $foo))
+            ->getData()
+            ->toArray();
+
+        $this->assertEquals($expectedData, $data);
+
+        $data = $this->object->addData($expectedData)->getData()->toArray();
+
+        unset($expectedData['foo']);
+
+        $data = $this->object
+            ->setData($expectedData)
+            ->getData()
+            ->toArray();
+
+        $this->assertEquals($expectedData, $data);
+    }
+
+    /**
+     * @test
+     */
+    public function canAccessDataByKey()
+    {
+        $foo = new \StdClass;
+
+        $this->object->setData(array('foo' => $foo));
+
+        $this->assertNull($this->object->get('baz'));
+        $this->assertEquals('bar', $this->object->get('baz', 'bar'));
+        $this->assertSame($foo, $this->object->get('foo'));
+        $this->assertSame($foo, $this->object->fetch('foo'));
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function fetchDataThrowsException()
+    {
+        $this->object->fetch('foo');
+    }
+
+    /**
+     * @test
+     */
+    public function canGetDataViaMagicMethods()
+    {
+        $foo = new \StdClass;
+
+        $this->object->setData(array('foo' => $foo));
+
+        $this->assertSame($foo, $this->object->foo);
+    }
 }
