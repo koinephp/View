@@ -34,7 +34,7 @@ class RendererTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Koine\View\Exceptions\FileNotFound
+     * @expectedException \Koine\View\Exceptions\FileNotFoundException
      * @expectedExceptionMessage File 'foo.php' was not found.
      */
     public function renderThrowsExceptionWhenFileDoesNotExist()

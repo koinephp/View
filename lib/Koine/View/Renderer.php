@@ -4,6 +4,7 @@ namespace Koine\View;
 
 use Koine\Object;
 use Koine\Hash;
+use Koine\View\Exceptions\FileNotFoundException;
 
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
@@ -34,9 +35,9 @@ class Renderer extends Object
     /**
      * Render a file
      *
-     * @param  string                 $filename       if no extension is given default to phtml
-     * @param  array                  $localVariables
-     * @throws Exception\FileNotFound when file does not exist in the view paths
+     * @param  string                $filename       if no extension is given default to phtml
+     * @param  array                 $localVariables
+     * @throws FileNotFoundException when file does not exist in the view paths
      * @return string
      */
     public function render($filename, array $localVariables = array())
@@ -51,11 +52,11 @@ class Renderer extends Object
      * Render a partial. A partial is a file prefixed with the "_" (underscore)
      * prefix
      *
-     * @param  string                  $filename       if no extension is given
-     *                                                 default to phtml
-     * @param  array                   $localVariables
-     * @throws Exceptions\FileNotFound when file does not exist in the view paths
-     * @throws Exceptions\Exception    when errors are issued
+     * @param  string                $filename       if no extension is given
+     *                                               default to phtml
+     * @param  array                 $localVariables
+     * @throws FileNotFoundException when file does not exist in the view paths
+     * @throws Exception             when errors are issued
      * @return string
      */
     public function partial($name, array $localVariables = array())
@@ -69,9 +70,9 @@ class Renderer extends Object
     }
 
     /**
-     * @param  string               $file
+     * @param  string    $file
      * @params array $localVariables
-     * @throws Exceptions\Exception when errors are issued
+     * @throws Exception when errors are issued
      */
     protected function includeWithLocalVariables($file, array $locals = array())
     {
@@ -99,7 +100,7 @@ class Renderer extends Object
     /**
      * Returns the path for the given filename.
      *
-     * @throws Exception\FileNotFound when file does not exist in the view paths
+     * @throws FileNotFoundException when file does not exist in the view paths
      * @return string
      */
     public function getFilePath($filename)
@@ -116,7 +117,7 @@ class Renderer extends Object
             }
         }
 
-        throw new Exceptions\FileNotFound(
+        throw new FileNotFoundException(
             'File \'' . $filename . '\' was not found.'
         );
     }
