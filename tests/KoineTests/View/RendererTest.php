@@ -211,4 +211,21 @@ class RendererTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($foo, $this->object->foo);
     }
+
+    /**
+     * @test
+     */
+    public function throwsExceptionWhenUndefinedLocalVariableIsUsed()
+    {
+        $file = FIXTURES_PATH . '/undefined_variable.phtml';
+
+        $this->setExpectedException(
+            'Koine\View\Exceptions\UndefinedLocalVariableException',
+            "Undefined variable: bar in file $file:2"
+        );
+
+        $this->object->render('undefined_variable', array(
+            'foo' => 'bar'
+        ));
+    }
 }

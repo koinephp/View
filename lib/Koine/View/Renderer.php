@@ -71,13 +71,21 @@ class Renderer extends Object
     {
         ob_start();
 
+        set_error_handler(array(
+            'Koine\View\Exceptions\UndefinedLocalVariableException',
+            'handleError'
+        ));
+
         try {
             extract($locals);
             include $file;
         } catch (\Exception $e) {
             ob_get_clean();
+            restore_error_handler();
             throw $e;
         }
+
+        restore_error_handler();
 
         return ob_get_clean();
     }
