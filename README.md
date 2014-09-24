@@ -16,6 +16,7 @@ Package information:
 [![Total Downloads](https://poser.pugx.org/koine/view/downloads.svg)](https://packagist.org/packages/koine/view)
 [![Latest Unstable Version](https://poser.pugx.org/koine/view/v/unstable.svg)](https://packagist.org/packages/koine/view)
 [![License](https://poser.pugx.org/koine/view/license.svg)](https://packagist.org/packages/koine/view)
+[![Dependency Status](https://gemnasium.com/koinephp/View.png)](https://gemnasium.com/koinephp/View)
 
 ### Usage
 
