@@ -18,3 +18,8 @@ script:
 
 after_script:
   - php vendor/bin/coveralls
+
+matrix:
+  allow_failures:
+    - php: nightly
+    - php: 7.0
