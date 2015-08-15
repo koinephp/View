@@ -5,10 +5,10 @@ Simple view renderer for phtml files
 
 Code information:
 
-[![Build Status](https://travis-ci.org/koinephp/View.png?branch=master)](https://travis-ci.org/koinephp/View)
-[![Coverage Status](https://coveralls.io/repos/koinephp/View/badge.png?branch=master)](https://coveralls.io/r/koinephp/View?branch=master)
+[![Build Status](https://travis-ci.org/koinephp/View.png?branch=v0.9)](https://travis-ci.org/koinephp/View)
+[![Coverage Status](https://coveralls.io/repos/koinephp/View/badge.png?branch=v0.9)](https://coveralls.io/r/koinephp/View?branch=v0.9)
 [![Code Climate](https://codeclimate.com/github/koinephp/View.png)](https://codeclimate.com/github/koinephp/View)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/View/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/koinephp/View/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/View/badges/quality-score.png?b=v0.9)](https://scrutinizer-ci.com/g/koinephp/View/?branch=v0.9)
 
 Package information:
 
